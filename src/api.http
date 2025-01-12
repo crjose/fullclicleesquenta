@@ -1,0 +1,40 @@
+get http://localhost:3000/esquenta/hello
+
+###
+get http://localhost:3000/products
+
+###
+# @name  createProduct
+post http://localhost:3000/products/
+Content-Type: application/json
+
+{
+   "name": "Product 1",
+   "slug": "Product-1fgsgds",
+   "description": "Description of product 1",
+   "price": 9.30
+}
+
+####
+@productId = {{createProduct.response.body.id}}
+
+###
+Get   http://localhost:3000/products/{{productId}}
+
+###
+Patch http://localhost:3000/products/{{productId}}
+Content-Type: application/json
+
+{
+    "name": "Product 1111dsfdf1"
+    
+}
+
+
+###
+Delete http://localhost:3000/products/{{productId}}
+
+
+
+
+
