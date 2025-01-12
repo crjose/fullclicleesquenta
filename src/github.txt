@@ -10,3 +10,11 @@ git push -u origin main
 git remote add origin https://github.com/crjose/fullclicleesquenta.git
 git branch -M main
 git push -u origin main
+
+erros:
+
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/migrations/20250108232645_/migration.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/migrations/20250109001353_/migration.sql', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/migrations/migration_lock.toml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'prisma/schema.prisma', LF will be replaced by CRLF the next time Git touches it
