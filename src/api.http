@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
    "name": "Product 1",
-   "slug": "Product-1fgsgds",
+   "slug": "Product-1ggdfgs",
    "description": "Description of product 1",
    "price": 9.30
 }
@@ -19,14 +19,14 @@ Content-Type: application/json
 @productId = {{createProduct.response.body.id}}
 
 ###
-Get   http://localhost:3000/products/{{productId}}
+Get   http://localhost:3000/products/1
 
 ###
-Patch http://localhost:3000/products/{{productId}}
+Patch http://localhost:3000/products/cm5uj2np30000u7xsmxuztaub
 Content-Type: application/json
 
 {
-    "name": "Product 1111dsfdf1"
+    "slug": "Product-2"
     
 }
 

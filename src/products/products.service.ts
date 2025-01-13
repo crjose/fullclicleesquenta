@@ -1,11 +1,10 @@
-
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { NotFoundError } from 'src/common/errors';
 
 import { ProductSlugAlreadyExistsError } from './errors';
-
 
 @Injectable()
 export class ProductsService {
@@ -32,30 +31,53 @@ export class ProductsService {
     return this.prismaService.product.findMany();
   }
 
-   
-  
-  findOne(id: string) {
+  /* findOne(id: string) {
     return this.prismaService.product.findFirst({
       where: {
         id,
       },
     });
-  } 
-  /* async findOne(id: string) {
+  }  */
+  async findOne(id: string) {
     const product = await this.prismaService.product.findFirst({
       where: {
         id,
       },
     });
+
+    if (!product) {
+      throw new NotFoundError('Product', id);
+    }
+
+    return product;
   }
 
-  if(!product){
-    throw new NotFoundError( 'Product', id );
-  }
+  async update(id: string, updateProductDto: UpdateProductDto) {
 
-    return product; */
+    let product = await this.prismaService.product.findFirst({
+      where: {
+        slug: updateProductDto.slug,
+      },
+    });
 
-  update(id: string, updateProductDto: UpdateProductDto) {
+    if(product && product.id !== id){
+      throw new ProductSlugAlreadyExistsError(updateProductDto.slug);
+    }
+
+    product = product && product.id === id ? product : await this.prismaService.product.findFirst({
+
+      where:{
+        id ,
+      },
+      
+    });
+
+
+    if (!product) {
+      throw new NotFoundError('Product', id); 
+    }
+
+
     return this.prismaService.product.update({
       where: {
         id,
@@ -64,7 +86,27 @@ export class ProductsService {
     });
   }
 
-  remove(id: string) {
+    /* const product = await this.prismaService.product.findFirst({
+      where: {
+        id,
+      },
+    });
+
+   */
+
+  async remove(id: string) {
+
+    const product = await this.prismaService.product.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!product) {
+      throw new NotFoundError('Product', id);
+    }
+
+
     return this.prismaService.product.delete({
       where: {
         id,

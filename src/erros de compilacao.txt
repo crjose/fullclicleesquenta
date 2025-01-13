@@ -1,0 +1,23 @@
+
+Erro no terminal :
+
+src/common/filters/not-found-error.filter.ts:7:45 - error TS2304: Cannot find name 'ExceptionFilter'.
+
+7 export class NotFoundErrorFilter implements ExceptionFilter {
+                                              ~~~~~~~~~~~~~~~
+
+Found 1 error(s).
+
+
+Erro na aplicação
+
+'implements' clauses can only be used in TypeScript files.ts(8005)
+
+Sugestão :
+Instalar a extensão Flow Language Support
+
+Desabilite a extensão TypeScript interna:
+
+Vá para a aba Extensões
+Pesquisar por @builtin Recursos da linguagem TypeScript e JavaScript
+Clique em Desativar
