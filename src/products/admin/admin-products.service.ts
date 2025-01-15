@@ -4,10 +4,10 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { NotFoundError } from 'src/common/errors';
 
-import { ProductSlugAlreadyExistsError } from './errors';
+import { ProductSlugAlreadyExistsError } from '../errors';
 
 @Injectable()
-export class ProductsService {
+export class AdminProductsService {
   constructor(private prismaService: PrismaService) {}
 
   //verificando se o slug do produto já existe
@@ -31,13 +31,7 @@ export class ProductsService {
     return this.prismaService.product.findMany();
   }
 
-  /* findOne(id: string) {
-    return this.prismaService.product.findFirst({
-      where: {
-        id,
-      },
-    });
-  }  */
+  
   async findOne(id: string) {
     const product = await this.prismaService.product.findFirst({
       where: {

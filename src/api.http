@@ -1,16 +1,27 @@
-get http://localhost:3000/esquenta/hello
+###
+# @name admin_jwt_login
+Post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email" : "admin@user.com",
+    "password" : "secret"
+}
 
 ###
-get http://localhost:3000/products
+get http://localhost:3000/esquenta/prefixo
+
+###
+get http://localhost:3000/admin/products
 
 ###
 # @name  createProduct
-post http://localhost:3000/products/
+post http://localhost:3000/admin/products/
 Content-Type: application/json
 
 {
    "name": "Product 1",
-   "slug": "Product-1ggdfgs",
+   "slug": "Product-187115614",
    "description": "Description of product 1",
    "price": 9.30
 }
@@ -19,22 +30,29 @@ Content-Type: application/json
 @productId = {{createProduct.response.body.id}}
 
 ###
-Get   http://localhost:3000/products/1
+Get   http://localhost:3000/admin/admin/products/{{productId}}
 
 ###
-Patch http://localhost:3000/products/cm5uj2np30000u7xsmxuztaub
+Patch http://localhost:3000/admin/products/{{productId}}
 Content-Type: application/json
 
 {
-    "slug": "Product-2"
+    "slug": "xpto"
     
 }
 
 
 ###
-Delete http://localhost:3000/products/{{productId}}
+Delete http://localhost:3000/admin/products/{{productId}}
 
 
 
+
+### open products
+
+GET http://localhost:3000/products/?name=product 1
+
+###
+GET http://localhost:3000/products/Product-10
 
 
