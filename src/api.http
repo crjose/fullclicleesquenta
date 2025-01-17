@@ -7,17 +7,22 @@ Content-Type: application/json
     "email" : "admin@user.com",
     "password" : "secret"
 }
+###
+
+@jwt = {{ admin_jwt_login.response.body.access_token }}
 
 ###
 get http://localhost:3000/esquenta/prefixo
 
 ###
 get http://localhost:3000/admin/products
+Authorization: Bearer {{ jwt }}
 
 ###
 # @name  createProduct
 post http://localhost:3000/admin/products/
 Content-Type: application/json
+Authorization: Bearer jwt
 
 {
    "name": "Product 1",
